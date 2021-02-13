@@ -1,0 +1,323 @@
+{
+	"info": {
+		"_postman_id": "6618a99e-3655-4de2-b614-5f3e9c37e266",
+		"name": "transmateAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/translate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Can i donate blood today?\",\n    \"to\": \"fr\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_}}://{{baseURL}}{{translate}}",
+					"protocol": "{{http_}}",
+					"host": [
+						"{{baseURL}}{{translate}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{http_}}://{{baseURL}}",
+					"protocol": "{{http_}}",
+					"host": [
+						"{{baseURL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/languages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{http_}}://{{baseURL}}{{languages}}",
+					"protocol": "{{http_}}",
+					"host": [
+						"{{baseURL}}{{languages}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/getlanguages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{http_}}://{{baseURL}}{{getlanguages}}",
+					"protocol": "{{http_}}",
+					"host": [
+						"{{baseURL}}{{getlanguages}}"
+					]
+				},
+				"description": "get list of languages for the app"
+			},
+			"response": []
+		},
+		{
+			"name": "/questions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{http_}}://{{baseURL}}{{questions}}",
+					"protocol": "{{http_}}",
+					"host": [
+						"{{baseURL}}{{questions}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/questions/categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{http_}}://{{baseURL}}{{questionscategories}}",
+					"protocol": "{{http_}}",
+					"host": [
+						"{{baseURL}}{{questionscategories}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/conversation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{http_}}://{{baseURL}}{{conversation}}",
+					"protocol": "{{http_}}",
+					"host": [
+						"{{baseURL}}{{conversation}}"
+					],
+					"query": [
+						{
+							"key": "chatId",
+							"value": "5f7e78107e30364d81bc924c",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/voices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{http_}}://{{baseURL}}{{voices}}",
+					"protocol": "{{http_}}",
+					"host": [
+						"{{baseURL}}{{voices}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"chatId\": \"5f851f857ebd168c484d8e8c\",\n    \"message\": \"Hello World\",\n    \"username\": \"adrian\",\n    \"translated_message\": \"Salut\",\n    \"lang_to\": \"en\",\n    \"isHost\": true\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_}}://{{baseURL}}{{message}}",
+					"protocol": "{{http_}}",
+					"host": [
+						"{{baseURL}}{{message}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/updatemessage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"chatId\": \"5f851f857ebd168c484d8e8c\",\n\t\"messageId\": \"5f8528f9f46440984b19d7c4\",\n    \"message\": \"Hello World\",\n    \"username\": \"adrian\",\n    \"lang_to\": \"fr\",\n    \"translated_message\": \"How can i help you\",\n    \"isHost\": true\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_}}://{{baseURL}}{{updatemessage}}",
+					"protocol": "{{http_}}",
+					"host": [
+						"{{baseURL}}{{updatemessage}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/startconversation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"lang_from\": \"en\",\n    \"lang_to\": \"en\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_}}://{{baseURL}}{{startconversation}}",
+					"protocol": "{{http_}}",
+					"host": [
+						"{{baseURL}}{{startconversation}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/endconversation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"chatId\": \"5f843531c111dc1e4dd85a05\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_}}://{{baseURL}}{{endconversation}}",
+					"protocol": "{{http_}}",
+					"host": [
+						"{{baseURL}}{{endconversation}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/setlanguage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"chatId\": \"5f843531c111dc1e4dd85a05\",\n    \"lang_to\": \"fr\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_}}://{{baseURL}}{{setlanguage}}",
+					"protocol": "{{http_}}",
+					"host": [
+						"{{baseURL}}{{setlanguage}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/getlanguage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"chatId\": \"5f843531c111dc1e4dd85a05\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_}}://{{baseURL}}{{getlanguage}}",
+					"protocol": "{{http_}}",
+					"host": [
+						"{{baseURL}}{{getlanguage}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "aws translateAPI",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{​​\n    \"text\": \"Hi how are you\", \n    \"from\": \"en\", \n    \"to\": \"fr\"\n}​​\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://98vtikwaxg.execute-api.ap-southeast-2.amazonaws.com/dev/translate",
+					"protocol": "https",
+					"host": [
+						"98vtikwaxg",
+						"execute-api",
+						"ap-southeast-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"translate"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
