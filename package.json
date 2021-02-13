@@ -23,6 +23,6 @@
     },
     "scripts": {
         "start": "node server.js",
-        "test": "no tests"
+        "test": "#mocha --recursive tests --exit"
     }
 }
