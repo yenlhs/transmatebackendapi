@@ -7,10 +7,10 @@ const QuestionsCollection = process.env.MONGODB_QUESTIONS_COLLECTION
 const LanguagesCollection = process.env.MONGODB_LANGUAGES_COLLECTION;
 
 const transmateSchema = mongoose.Schema({
-	donor:{
+	donor:  {
 		name: String,
 		mobile: String,
-		donorid: String
+		donorid: String,,
 	},
 	start_timestamp: Date,
 	end_timestamp: Date,
@@ -19,10 +19,14 @@ const transmateSchema = mongoose.Schema({
 	messages: [
 		{
 			message: String,
+			text: String,
 			translated_message: String,
 			username: String,
 			lang_to: String,
 			timestamp: String,
+			user: {
+				name: String,
+			}
 		},
 	],
 });
