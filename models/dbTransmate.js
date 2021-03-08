@@ -1,3 +1,4 @@
+const { ObjectBuilder } = require('firebase-functions/lib/providers/storage');
 const mongoose = require('mongoose');
 
 const mongoURI = process.env.MONGODB_URI;
@@ -25,6 +26,7 @@ const transmateSchema = mongoose.Schema({
 			lang_to: String,
 			timestamp: String,
 			user: {
+				_id: ObjectId,
 				name: String,
 			},
 		},
