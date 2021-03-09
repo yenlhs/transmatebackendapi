@@ -25,9 +25,11 @@ const transmateSchema = mongoose.Schema({
 			username: String,
 			lang_to: String,
 			timestamp: String,
-			user: new mongoose.Schema({
+			createdAt: Date,
+			user: {
+				_id: String,
 				name: String,
-			}),
+			},
 		},
 	],
 });
