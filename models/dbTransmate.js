@@ -27,7 +27,7 @@ const transmateSchema = mongoose.Schema({
 			timestamp: String,
 			createdAt: Date,
 			user: {
-				_id: String,
+				_id: Number,
 				name: String,
 			},
 		},
