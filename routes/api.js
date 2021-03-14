@@ -12,8 +12,16 @@ const {
 	getLanguage,
 	getLanguages,
 } = require('../controllers/transmateController');
+const Pusher = require('pusher')
+const { response } = require('express')
 
-
+const pusher = new Pusher({
+	appId: process.env.PUSHER_APPID,
+	key: process.env.PUSHER_KEY,
+	secret: process.env.PUSHER_SECRET,
+	cluster: process.env.PUSHER_CLUSTER,
+	encrypted: process.env.PUSHER_ENCRYPTED,
+})
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -68,6 +76,15 @@ router.get('/conversation', (request, response) => {
 	const chatId = request.query.chatId || undefined;
 	getConversations(chatId, response);
 });
+
+router.post('/userTyping', (request, response) => {
+	const chatId = request.body.chatId
+	const username = request.body.username
+	pusher.trigger(`conversations_${chatId}`, 'userIsTyping', {
+		username: username,
+	})
+	response.status(200).send()
+})
 
 
 module.exports = router;
