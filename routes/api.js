@@ -80,7 +80,7 @@ router.get('/conversation', (request, response) => {
 router.post('/userTyping', (request, response) => {
 	const chatId = request.body.chatId
 	const username = request.body.username
-	pusher.trigger(`conversations_${chatId}`, 'userIsTyping', {
+	pusher.trigger(`usertyping_${chatId}`, 'userIsTyping', {
 		username: username,
 	})
 	response.status(200).send()
