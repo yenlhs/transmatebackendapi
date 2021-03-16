@@ -26,13 +26,14 @@ const transmateSchema = mongoose.Schema({
 			lang_to: String,
 			timestamp: String,
 			createdAt: Date,
+			system: Boolean,
 			user: {
 				_id: Number,
 				name: String,
 			},
 		},
 	],
-});
+})
 
 const transmateQuestionSchema = mongoose.Schema({
 	title: String,
