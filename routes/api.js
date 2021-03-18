@@ -5,13 +5,14 @@ const moment = require('moment-timezone');
 const {
 	createConversation,
 	sendMessage,
+	sendSystemMessage,
 	updateMessage,
 	endConversation,
 	getConversations,
 	setLanguage,
 	getLanguage,
 	getLanguages,
-} = require('../controllers/transmateController');
+} = require('../controllers/transmateController')
 const Pusher = require('pusher')
 const { response } = require('express')
 
@@ -64,6 +65,15 @@ router.post('/message', async (request, response) => {
 	// console.log('message from API', message)
 	sendMessage(chatId, message, response);
 });
+
+router.post('/systemmessage', async (request, response) => {
+	const chatId = request.body.chatId
+	const message = request.body
+	// message.timestamp = moment().format('h:mm:ss');
+	message.timestamp = moment().tz('Australia/Melbourne').format('HH:mm:ss')
+	// console.log('message from API', message)
+	sendSystemMessage(chatId, message, response)
+})
 
 router.post('/updatemessage', async (request, response) => {
 	const chatId = request.body.chatId;

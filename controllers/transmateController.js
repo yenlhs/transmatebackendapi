@@ -35,6 +35,27 @@ const sendMessage = (id, payload, response) => {
 	);
 }
 
+const sendSystemMessage = (id, payload, response) => {
+	dbModel.findByIdAndUpdate(
+		{
+			_id: id,
+		},
+		{
+			$addToSet: { messages: [payload] },
+		},
+		{ new: true },
+		(err, data) => {
+			if (err) {
+				return response.status(500).send(err)
+			} else {
+				return response
+					.status(201)
+					.send(data.messages[data.messages.length - 1])
+			}
+		}
+	)
+}
+
 const updateMessage = (id, payload, response) => {
 	dbModel.findOneAndUpdate(
 		{ 
@@ -167,6 +188,7 @@ const getQuestions = (payload, response) => {
 module.exports = {
 	createConversation,
 	sendMessage,
+	sendSystemMessage,
 	updateMessage,
 	endConversation,
 	getConversations,
@@ -174,4 +196,4 @@ module.exports = {
 	getLanguage,
 	getLanguages,
 	getQuestions,
-};
+}
