@@ -50,11 +50,8 @@ router.post('/startconversation', (request, response) => {
 });
 
 router.post('/endconversation', (request, response) => {
-	const chatId = request.body.chatId;
-	const req_payload = {
-		end_timestamp: new Date(),
-	};
-	endConversation(chatId, req_payload, response);
+	const chatId = request.body.chatId
+	endConversation(chatId, response)
 });
 
 router.post('/message', async (request, response) => {

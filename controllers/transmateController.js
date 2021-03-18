@@ -78,21 +78,28 @@ const updateMessage = (id, payload, response) => {
 	)
 }
 
-const endConversation = (id, payload, response) => {
-  dbModel.findOneAndUpdate(
-		{
-			_id: id,
-		},
-		payload,
-		{ new: true },
-		(err, data) => {
-			if (err) {
-				return response.status(500).send(err);
-			} else {
-				return response.status(201).send(data);
-			}
+const endConversation = (id, response) => {
+	// dbModel.findOneAndUpdate(
+	// 	{
+	// 		_id: id,
+	// 	},
+	// 	payload,
+	// 	{ new: true },
+	// 	(err, data) => {
+	// 		if (err) {
+	// 			return response.status(500).send(err);
+	// 		} else {
+	// 			return response.status(201).send(data);
+	// 		}
+	// 	}
+	// );
+	dbModel.findByIdAndDelete(id, (err, data) => {
+		if (err) {
+			return response.status(500).send(err);
+		} else {
+			return response.status(201).send('sucessfully delete');
 		}
-	);
+	})
 }
 
 const getConversations = (payload, response) => {
