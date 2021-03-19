@@ -49,7 +49,7 @@ db.once('open', () => {
 				const messageEvent =
 					change.updateDescription.updatedFields.messages[latest_update_pos - 1]
 				pusher.trigger(`conversations_${chatId}`, 'updated', messageEvent)
-				console.log(field.messages);
+				console.log(messageEvent)
 			}
 		} else {
 			console.log('Error triggering Pusher');
