@@ -42,19 +42,14 @@ db.once('open', () => {
 	changeStream.on('change', (change) => {
 		if (change.operationType === 'update') {
 			const field = change.updateDescription.updatedFields;
-			if (field.end_timestamp) {
-				console.log('end conversation updated');
-			} else if (field.messages) {
-				const chatId = change.documentKey._id;
+			if (field.messages) {
+				const chatId = change.documentKey._id
 				latest_update_pos =
-					change.updateDescription.updatedFields.messages.length;
+					change.updateDescription.updatedFields.messages.length
 				const messageEvent =
-					change.updateDescription.updatedFields.messages[
-						latest_update_pos - 1
-					];
-				pusher.trigger(`conversations_${chatId}`, 'updated', messageEvent);
-				// console.log(field.messages);
-				// pusher.trigger(`conversations_${chatId}`, 'updated', field.messages);
+					change.updateDescription.updatedFields.messages[latest_update_pos - 1]
+				pusher.trigger(`conversations_${chatId}`, 'updated', messageEvent)
+				console.log(field.messages);
 			}
 		} else {
 			console.log('Error triggering Pusher');
