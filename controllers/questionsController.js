@@ -41,8 +41,19 @@ const getCategoriesNew = (response) => {
 	}).distinct("category")
 }
 
+const getQuestionsByCategory = (payload, response) => {
+	questionsNewModel.find({ category: payload }, (err, data) => {
+		if (err) {
+			return response.status(500).send(err)
+		} else {
+			return response.status(200).send(data)
+		}
+	})
+}
+
 module.exports = {
 	getQuestions,
 	getCategories,
 	getCategoriesNew,
+	getQuestionsByCategory,
 }

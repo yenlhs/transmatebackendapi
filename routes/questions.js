@@ -4,6 +4,7 @@ const router = express.Router();
 const {
 	getCategories,
 	getCategoriesNew,
+	getQuestionsByCategory,
 	getQuestions,
 } = require('../controllers/questionsController')
 
@@ -24,11 +25,15 @@ router.get('/categoriesnew', (request, response) => {
 	getCategoriesNew(response)
 })
 
-router.get('/:category', (request, response) => {
-	const category = request.params.category;
-	// response.status(200).send(category);
+router.get('/categoriesnew/:category', (request, response) => {
+	const category = request.params.category
+	getQuestionsByCategory(category, response)
+})
 
-	getQuestions(category, response);
+router.get('/:category', (request, response) => {
+	const category = request.params.category
+	// response.status(200).send(category);
+	getQuestions(category, response)
 });
 
 
