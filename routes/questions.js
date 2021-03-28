@@ -3,8 +3,9 @@ const router = express.Router();
 
 const {
 	getCategories,
+	getCategoriesNew,
 	getQuestions,
-} = require('../controllers/questionsController');
+} = require('../controllers/questionsController')
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -16,8 +17,12 @@ router.get('/', (request, response) => {
 });
 
 router.get('/categories', (request, response) => {
-	getCategories(request, response);
+	getCategories(request, response)
 });
+
+router.get('/categoriesnew', (request, response) => {
+	getCategoriesNew(response)
+})
 
 router.get('/:category', (request, response) => {
 	const category = request.params.category;
@@ -25,5 +30,6 @@ router.get('/:category', (request, response) => {
 
 	getQuestions(category, response);
 });
+
 
 module.exports = router;

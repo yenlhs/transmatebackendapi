@@ -1,11 +1,13 @@
-const { ObjectBuilder } = require('firebase-functions/lib/providers/storage');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const mongoURI = process.env.MONGODB_URI;
+const mongoURI = process.env.MONGODB_URI
 
-const dbCollection = process.env.MONGODB_COLLECTION;
+const dbCollection = process.env.MONGODB_COLLECTION
 const QuestionsCollection = process.env.MONGODB_QUESTIONS_COLLECTION
-const LanguagesCollection = process.env.MONGODB_LANGUAGES_COLLECTION;
+const QuestionsNewCollection = process.env.MONGODB_QUESTIONS_NEW_COLLECTION
+const LanguagesCollection = process.env.MONGODB_LANGUAGES_COLLECTION
+
+console.log(QuestionsNewCollection)
 
 const transmateSchema = mongoose.Schema({
 	donor: {
@@ -45,24 +47,42 @@ const transmateQuestionSchema = mongoose.Schema({
 				{
 					language: String,
 					question: String,
-				}
-			]
-		}
-	]
+				},
+			],
+		},
+	],
+})
+
+const transmateQuestionNewSchema = mongoose.Schema({
+	question: String,
+	category: String,
+	image: String,
+	translations: [
+		{
+			language: String,
+			question: String,
+		},
+	],
 })
 
 const transmateLanguagesSchema = mongoose.Schema({
 	language_native: String,
 	language: String,
-	code: String
+	code: String,
 })
 
 // const dbModel = mongoose.model(process.env.DB_COLLECTION, transmateSchema);
-const dbModel = mongoose.model(dbCollection, transmateSchema);
+const dbModel = mongoose.model(dbCollection, transmateSchema)
+
 const questionsModel = mongoose.model(
 	QuestionsCollection,
 	transmateQuestionSchema
-);
+)
+
+const questionsNewModel = mongoose.model(
+	QuestionsNewCollection,
+	transmateQuestionNewSchema
+)
 const languagesModel = mongoose.model(
 	LanguagesCollection,
 	transmateLanguagesSchema
@@ -72,9 +92,15 @@ mongoose.connect(mongoURI, {
 	useCreateIndex: true,
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
-});
+})
 
-const db = mongoose.connection;
+const db = mongoose.connection
 
-
-module.exports = { db, dbModel, questionsModel, languagesModel, dbCollection };
+module.exports = {
+	db,
+	dbModel,
+	questionsModel,
+	questionsNewModel,
+	languagesModel,
+	dbCollection,
+}
