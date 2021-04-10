@@ -1,6 +1,10 @@
 const fs = require('fs')
 const AWS = require('aws-sdk')
 
+AWS.config.update({
+	accessKeyId: process.env.ACCESS_ID,
+	secretAccessKey: process.env.SECRET_KEY,
+})
 // Create an Polly client
 const Polly = new AWS.Polly({
 	signatureVersion: 'v4',
