@@ -9,6 +9,7 @@ const azRouter = require('./routes/azure');
 const apiRouter = require('./routes/api');
 const langRouter = require('./routes/language');
 const questionsRouter = require('./routes/questions');
+const voiceRouter = require('./routes/voice')
 
 // - App config
 const app = express();
@@ -30,6 +31,7 @@ app.use('/az', azRouter);
 app.use('/api', apiRouter);
 app.use('/language', langRouter);
 app.use('/questions', questionsRouter);
+app.use('/voice', voiceRouter)
 
 // watches the mongodb collection and sends data to pusher
 // whenever there is an insert operation

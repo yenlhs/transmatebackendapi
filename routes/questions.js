@@ -6,6 +6,7 @@ const {
 	getCategoriesNew,
 	getQuestionsByCategory,
 	getQuestions,
+	getCategoriesDistinct,
 } = require('../controllers/questionsController')
 
 // middleware that is specific to this router
@@ -36,5 +37,8 @@ router.get('/:category', (request, response) => {
 	getQuestions(category, response)
 });
 
+router.get('/categoriesdistinct', (request, response) => {
+	getCategoriesDistinct(response)
+})
 
 module.exports = router;

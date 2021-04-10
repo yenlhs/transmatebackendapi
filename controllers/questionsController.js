@@ -51,9 +51,21 @@ const getQuestionsByCategory = (payload, response) => {
 	})
 }
 
+const getCategoriesDistinct = (payload, response) => {
+	console.log('testing..')
+	questionsNewModel.find({}, (err, data) => {
+		if (err) {
+			return response.status(500).send(err)
+		} else {
+			return response.status(200).send(data)
+		}
+	})
+}
+
 module.exports = {
 	getQuestions,
 	getCategories,
 	getCategoriesNew,
 	getQuestionsByCategory,
+	getCategoriesDistinct,
 }
