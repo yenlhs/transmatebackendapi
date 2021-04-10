@@ -1,5 +1,5 @@
-const AWS = require('aws-sdk')
 const fs = require('fs')
+const AWS = require('aws-sdk')
 
 // Create an Polly client
 const Polly = new AWS.Polly({
@@ -30,7 +30,7 @@ const uploadAudio = (key, audio) => {
 const getParams = (language) => {
 	switch (language) {
 		case 'en':
-			return { voice: 'Kimberly', languageCode: 'en-US' }
+			return { voice: 'Emma', languageCode: 'en-GB' }
 			break
 		case 'fr':
 			return { voice: 'Lea', languageCode: 'fr-FR' }
@@ -42,9 +42,14 @@ const getParams = (language) => {
 			return { voice: 'Aditi', languageCode: 'hi-IN' }
 			break
 		case 'zh-Hans':
-		case 'yue':
 			return { voice: 'Zhiyu', languageCode: 'cmn-CN' }
 			break
+    case 'ko':
+      return { voice: 'Seoyeon', languageCode: 'ko-KR' }
+      break
+    case 'ru':
+      return { voice: 'Tatyana', languageCode: 'ru-RU' }
+      break
 		default:
 			return { voice: 'Kimberly', languageCode: 'en-US' }
 			break
@@ -60,7 +65,6 @@ const generateVoiceTranslation = (payload, response) => {
 		VoiceId: voiceParam.voice,
 		LanguageCode: voiceParam.languageCode,
 	}
-
 	Polly.synthesizeSpeech(params, (err, data) => {
 		if (err) {
 			console.log(err.code)
