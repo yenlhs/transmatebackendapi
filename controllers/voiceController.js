@@ -48,12 +48,15 @@ const getParams = (language) => {
 		case 'zh-Hans':
 			return { voice: 'Zhiyu', languageCode: 'cmn-CN' }
 			break
-    case 'ko':
-      return { voice: 'Seoyeon', languageCode: 'ko-KR' }
-      break
-    case 'ru':
-      return { voice: 'Tatyana', languageCode: 'ru-RU' }
-      break
+		case 'ko':
+			return { voice: 'Seoyeon', languageCode: 'ko-KR' }
+			break
+		case 'ru':
+			return { voice: 'Tatyana', languageCode: 'ru-RU' }
+			break
+		case 'ar':
+			return { voice: 'Zeina', languageCode: 'arb' }
+			break
 		default:
 			return { voice: 'Kimberly', languageCode: 'en-US' }
 			break
