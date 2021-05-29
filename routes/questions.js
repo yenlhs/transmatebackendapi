@@ -28,7 +28,7 @@ router.get('/categoriesnew', (request, response) => {
 
 router.get('/categoriesnew/:category', (request, response) => {
 	const category = request.params.category
-	getQuestionsByCategory(category, response)
+	getQuestionsByCategory(parseInt(category), response)
 })
 
 router.get('/:category', (request, response) => {

@@ -42,7 +42,7 @@ const getCategoriesNew = (response) => {
 }
 
 const getQuestionsByCategory = (payload, response) => {
-	questionsNewModel.find({ 'category.name': payload }, (err, data) => {
+	questionsNewModel.find({ 'category.id': payload }, (err, data) => {
 		if (err) {
 			return response.status(500).send(err)
 		} else {
