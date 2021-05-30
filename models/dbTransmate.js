@@ -7,8 +7,6 @@ const QuestionsCollection = process.env.MONGODB_QUESTIONS_COLLECTION
 const QuestionsNewCollection = process.env.MONGODB_QUESTIONS_NEW_COLLECTION
 const LanguagesCollection = process.env.MONGODB_LANGUAGES_COLLECTION
 
-console.log(QuestionsNewCollection)
-
 const transmateSchema = mongoose.Schema({
 	donor: {
 		name: String,
@@ -55,7 +53,10 @@ const transmateQuestionSchema = mongoose.Schema({
 
 const transmateQuestionNewSchema = mongoose.Schema({
 	question: String,
-	category: String,
+	category: {
+		name: String,
+		id: Number,
+	},
 	image: String,
 	translations: [
 		{

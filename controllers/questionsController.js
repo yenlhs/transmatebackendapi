@@ -41,6 +41,17 @@ const getCategoriesNew = (response) => {
 	}).distinct("category")
 }
 
+const getAllQuestions = (response) => {
+	questionsNewModel.find({}, (err, data) => {
+		if (err) {
+			return response.status(500).send(err)
+		} else {
+			console.log(data)
+			return response.status(200).send(data)
+		}
+	})
+}
+
 const getQuestionsByCategory = (payload, response) => {
 	questionsNewModel.find({ 'category.id': payload }, (err, data) => {
 		if (err) {
@@ -52,7 +63,6 @@ const getQuestionsByCategory = (payload, response) => {
 }
 
 const getCategoriesDistinct = (payload, response) => {
-	console.log('testing..')
 	questionsNewModel.find({}, (err, data) => {
 		if (err) {
 			return response.status(500).send(err)
@@ -68,4 +78,5 @@ module.exports = {
 	getCategoriesNew,
 	getQuestionsByCategory,
 	getCategoriesDistinct,
+	getAllQuestions,
 }

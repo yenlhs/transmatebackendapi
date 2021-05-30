@@ -7,6 +7,7 @@ const {
 	getQuestionsByCategory,
 	getQuestions,
 	getCategoriesDistinct,
+	getAllQuestions,
 } = require('../controllers/questionsController')
 
 // middleware that is specific to this router
@@ -17,6 +18,10 @@ router.use((req, res, next) => {
 router.get('/', (request, response) => {
 	getQuestions(null, response);
 });
+
+router.get('/all', (request, response) => {
+	getAllQuestions(response)
+})
 
 router.get('/categories', (request, response) => {
 	getCategories(request, response)
