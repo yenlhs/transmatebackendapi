@@ -42,7 +42,7 @@ const getCategoriesNew = (response) => {
 				)
 
 				Object.keys(result).map((key) => {
-					categories.push({ id: parseInt(key), name: result[key]})
+					categories.push({ id: parseInt(key + 1), name: result[key] })
 				})
 				response.status(200).send(categories)
 			}
