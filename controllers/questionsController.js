@@ -1,23 +1,14 @@
 const { questionsModel, questionsNewModel } = require('../models/dbTransmate')
 
 const getQuestions = (payload, response) => {
-	if (payload) {
-		questionsModel.find({ title: payload }, (err, data) => {
-			if (err) {
-				return response.status(500).send(err)
-			} else {
-				return response.status(200).send(data[0])
-			}
-		})
-	} else {
-		questionsModel.find((err, data) => {
-			if (err) {
-				return response.status(500).send(err)
-			} else {
-				return response.status(200).send(data)
-			}
-		})
-	}
+	questionsNewModel.find({ categories: payload }, (err, data) => {
+		if (err) {
+			return response.status(500).send(err)
+		} else {
+			return response.status(200).send(data)
+		}
+	})
+	
 }
 
 // returns the list of categories of questions
@@ -32,13 +23,30 @@ const getCategories = (payload, response) => {
 }
 
 const getCategoriesNew = (response) => {
-	questionsNewModel.find({},  {  category:  1  }, (err, data) => {
-		if (err) {
-			return response.status(500).send(err)
-		} else {
-			return response.status(200).send(data)
-		}
-	}).distinct("category")
+	let categories = [];
+	let result = [];
+	let combinedCategories = []
+	questionsNewModel
+		.find({}, { categories: 1 }, (err, data) => {
+			if (err) {
+				return response.status(500).send(err)
+			} else {
+				data.forEach(element => {
+					combinedCategories.push(...element.categories)
+				})
+
+				result = combinedCategories.reduce(
+					(unique, item) =>
+						unique.includes(item) ? unique : [...unique, item],
+					[]
+				)
+
+				Object.keys(result).map((key) => {
+					categories.push({ id: parseInt(key), name: result[key]})
+				})
+				response.status(200).send(categories)
+			}
+		})
 }
 
 const getAllQuestions = (response) => {

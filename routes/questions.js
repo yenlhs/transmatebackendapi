@@ -16,7 +16,8 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (request, response) => {
-	getQuestions(null, response);
+	const category = decodeURIComponent(request.query.category)
+	getQuestions(category, response)
 });
 
 router.get('/all', (request, response) => {

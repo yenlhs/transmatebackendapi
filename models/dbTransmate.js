@@ -57,6 +57,7 @@ const transmateQuestionNewSchema = mongoose.Schema({
 		name: String,
 		id: Number,
 	},
+	categories: [String],
 	image: String,
 	translations: [
 		{
