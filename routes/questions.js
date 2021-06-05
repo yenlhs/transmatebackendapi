@@ -8,6 +8,7 @@ const {
 	getQuestions,
 	getCategoriesDistinct,
 	getAllQuestions,
+	createQuestion,
 } = require('../controllers/questionsController')
 
 // middleware that is specific to this router
@@ -19,6 +20,11 @@ router.get('/', (request, response) => {
 	const category = decodeURIComponent(request.query.category)
 	getQuestions(category, response)
 });
+
+router.post('/', (request, response) => {
+	const question = request.body
+	createQuestion(question, response)
+})
 
 router.get('/all', (request, response) => {
 	getAllQuestions(response)
@@ -46,5 +52,7 @@ router.get('/:category', (request, response) => {
 router.get('/categoriesdistinct', (request, response) => {
 	getCategoriesDistinct(response)
 })
+
+
 
 module.exports = router;

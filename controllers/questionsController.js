@@ -80,6 +80,16 @@ const getCategoriesDistinct = (payload, response) => {
 	})
 }
 
+const createQuestion = (payload, response) => {
+	questionsNewModel.create(payload, (err, data) => {
+		if (err) {
+			return response.status(500).send(err)
+		} else {
+			return response.status(200).send(data)
+		}
+	})
+}
+
 module.exports = {
 	getQuestions,
 	getCategories,
@@ -87,4 +97,5 @@ module.exports = {
 	getQuestionsByCategory,
 	getCategoriesDistinct,
 	getAllQuestions,
+	createQuestion,
 }

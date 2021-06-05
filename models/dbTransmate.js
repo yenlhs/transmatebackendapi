@@ -58,6 +58,8 @@ const transmateQuestionNewSchema = mongoose.Schema({
 		id: Number,
 	},
 	categories: [String],
+	isBool: Boolean,
+	isAudioEnabled: Boolean,
 	image: String,
 	translations: [
 		{

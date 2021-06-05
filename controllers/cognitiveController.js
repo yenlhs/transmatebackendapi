@@ -76,9 +76,59 @@ const translate = async (payload, response) => {
 	}
 };
 
+const translateQuestion = async (payload, response) => {
+	let translateArr = []
+	let translations = []
+	const languages = [
+		'en',
+		'fr',
+		'es',
+		'fa',
+		'zh-Hans',
+		'ko',
+		'yue',
+		'th',
+		'vi',
+		'hi',
+		'ru',
+		'ar',
+	]
+	languages.forEach((code, index) => {
+		const options = {
+			method: 'post',
+			url: '/translate',
+			baseURL: langBaseURL,
+			params: {
+				'api-version': '3.0',
+				to: code,
+			},
+			headers: {
+				'Ocp-Apim-Subscription-Key': langSubKey,
+				'Ocp-Apim-Subscription-Region': az_region,
+				'Content-type': 'application/json',
+				'X-ClientTraceId': uuidv4().toString(),
+			},
+			data: [{ Text: payload }],
+		}
+
+		translateArr.push(axios.request(options))
+	})
+	await Promise.all(translateArr).then((results) => {
+		results.forEach((result) => {
+			let obj = {
+				language: result.data[0].translations[0].to,
+				question: result.data[0].translations[0].text,
+			}
+			translations.push(obj)
+		})
+	})
+	return response.status(200).send(translations)
+}
+
 
 module.exports = {
 	getLanguages,
 	getVoices,
 	translate,
-};
+	translateQuestion,
+}
