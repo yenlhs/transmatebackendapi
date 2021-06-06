@@ -9,6 +9,7 @@ const {
 	getCategoriesDistinct,
 	getAllQuestions,
 	createQuestion,
+	deleteQuestion,
 } = require('../controllers/questionsController')
 
 // middleware that is specific to this router
@@ -24,6 +25,11 @@ router.get('/', (request, response) => {
 router.post('/', (request, response) => {
 	const question = request.body
 	createQuestion(question, response)
+})
+
+router.delete('/delete/:id', (request, response) => {
+	const id = request.params.id
+	deleteQuestion(id, response)
 })
 
 router.get('/all', (request, response) => {

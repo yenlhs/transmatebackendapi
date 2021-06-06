@@ -90,6 +90,16 @@ const createQuestion = (payload, response) => {
 	})
 }
 
+const deleteQuestion = (payload, response) => {
+	questionsNewModel.findByIdAndDelete(payload, (err, data) => {
+		if (err) {
+			return response.status(500).send(err)
+		} else {
+			return response.status(200).send(data)
+		}
+	})
+}
+
 module.exports = {
 	getQuestions,
 	getCategories,
@@ -98,4 +108,5 @@ module.exports = {
 	getCategoriesDistinct,
 	getAllQuestions,
 	createQuestion,
+	deleteQuestion,
 }
