@@ -29,7 +29,9 @@ router.post('/', (request, response) => {
 
 router.delete('/delete/:id', (request, response) => {
 	const id = request.params.id
-	deleteQuestion(id, response)
+	if (id)  {
+		deleteQuestion(id, response)
+	} else return response.status(404).send('Error in request')
 })
 
 router.get('/all', (request, response) => {
